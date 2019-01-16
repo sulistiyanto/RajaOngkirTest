@@ -1,6 +1,8 @@
 package sulistiyanto.com.rajaongkirtest.ui.home
 
 import android.support.v4.app.Fragment
+import android.support.v7.widget.SearchView
+import android.view.Menu
 import android.view.View
 
 import sulistiyanto.com.rajaongkirtest.R
@@ -35,7 +37,15 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun initLayout(rootView: View?) {
         presenter.attach(this)
+        setHasOptionsMenu(true)
 
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        val mSearchMenuItem = menu?.findItem(R.id.action_search)
+        val searchView = mSearchMenuItem?.actionView as SearchView
+        mSearchMenuItem.isVisible = false
+        searchView.visibility = View.GONE
     }
 
     override fun displayError(message: String) {

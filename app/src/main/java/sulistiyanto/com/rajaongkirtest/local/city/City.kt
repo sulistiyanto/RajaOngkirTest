@@ -1,4 +1,4 @@
-package sulistiyanto.com.rajaongkirtest.local
+package sulistiyanto.com.rajaongkirtest.local.city
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
