@@ -24,4 +24,7 @@ class CityHelper @Inject constructor() : CityInterface {
 
     override fun searchCityByName(realm: Realm, cityName: String): List<City> =
         realm.where(City::class.java).contains("cityName", cityName, Case.INSENSITIVE).findAll()
+
+    override fun searchCityByNameWithLimit(realm: Realm, cityName: String): List<City> =
+        realm.where(City::class.java).contains("cityName", cityName, Case.INSENSITIVE).limit(7).findAll()
 }

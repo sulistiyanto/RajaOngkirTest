@@ -4,6 +4,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import sulistiyanto.com.rajaongkirtest.data.model.city.CityModel
+import sulistiyanto.com.rajaongkirtest.data.model.cost.CostsResultModel
 import sulistiyanto.com.rajaongkirtest.data.model.province.ProvinceModel
 import javax.inject.Inject
 
@@ -37,6 +38,23 @@ class RajaRepo @Inject constructor(private val apiService: APIService) {
             .subscribe(
                 {
                     response(it?.city?.results)
+                },
+                { error(it) }
+            )
+
+    fun getCost(
+        key: String, origin: String, destination: String,
+        weight: String, courier: String,
+        response: (List<CostsResultModel>?) -> Unit,
+        error: (Throwable) -> Unit
+    ): Disposable =
+        apiService.cost(key, origin, destination, weight, courier)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .unsubscribeOn(Schedulers.io())
+            .subscribe(
+                {
+                    response(it?.cost?.results)
                 },
                 { error(it) }
             )

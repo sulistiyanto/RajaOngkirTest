@@ -35,6 +35,7 @@ ext {
     retrofit2Version = "2.3.0"
     rxKotlinVersion = "2.1.0"
     rxAndroidVersion = "2.0.2"
+    rxBinding = "2.1.1"
     okhttp3Version = "3.8.1"
     gsonVersion = "2.8.1"
 }
@@ -50,6 +51,9 @@ dependencies {
     // RX
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    // RX BINDING
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rxBinding"
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$rxBinding"
     // RETROFIT
     implementation "com.squareup.retrofit2:retrofit:$retrofit2Version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2Version"

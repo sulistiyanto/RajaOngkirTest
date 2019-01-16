@@ -1,9 +1,9 @@
 package sulistiyanto.com.rajaongkirtest.data
 
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Header
+import retrofit2.http.*
 import sulistiyanto.com.rajaongkirtest.data.model.city.CityResponse
+import sulistiyanto.com.rajaongkirtest.data.model.cost.CostResponse
 import sulistiyanto.com.rajaongkirtest.data.model.province.ProvinceResponse
 
 interface APIService {
@@ -17,4 +17,14 @@ interface APIService {
     fun getCity(
         @Header("key") key: String
     ): Observable<CityResponse?>
+
+    @FormUrlEncoded
+    @POST("starter/cost")
+    fun cost(
+        @Header("key") key: String,
+        @Field("origin") origin: String,
+        @Field("destination") destination: String,
+        @Field("weight") weight: String,
+        @Field("courier") courier: String
+    ): Observable<CostResponse?>
 }
