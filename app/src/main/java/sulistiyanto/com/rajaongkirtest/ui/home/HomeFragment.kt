@@ -1,5 +1,6 @@
 package sulistiyanto.com.rajaongkirtest.ui.home
 
+import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ import sulistiyanto.com.rajaongkirtest.application.MyApplication
 import sulistiyanto.com.rajaongkirtest.di.subcomponent.FragmentComponent
 import sulistiyanto.com.rajaongkirtest.local.city.CityHelper
 import sulistiyanto.com.rajaongkirtest.ui.base.BaseFragment
+import sulistiyanto.com.rajaongkirtest.ui.city.SearchCityActivity
 import javax.inject.Inject
 
 /**
@@ -57,6 +59,9 @@ class HomeFragment : BaseFragment(), HomeView {
         etDestination = rootView?.findViewById(R.id.et_destination)
         etWeight = rootView?.findViewById(R.id.et_weight)
 
+        etOrigin?.setOnClickListener {
+            startActivity(Intent(context, SearchCityActivity::class.java))
+        }
         initSpinner(rootView)
 
         presenter.getCost()

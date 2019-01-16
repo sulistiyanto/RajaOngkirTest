@@ -36,18 +36,23 @@ class SearchCityActivity : BaseActivity(), CityView {
     override fun initLayout() {
         setContentView(R.layout.activity_search_city)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         rvCity.layoutManager = LinearLayoutManager(this)
         rvCity.itemAnimator = DefaultItemAnimator()
         rvCity.setHasFixedSize(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return super.onOptionsItemSelected(item)
+        return when (item?.itemId) {
+            R.id.action_search -> true
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun displayCity(adapter: AdapterCity) {
