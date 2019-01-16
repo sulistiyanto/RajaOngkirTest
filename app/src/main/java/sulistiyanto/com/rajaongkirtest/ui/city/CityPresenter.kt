@@ -42,4 +42,14 @@ class CityPresenter @Inject constructor(private val repo: RajaRepo) : BasePresen
         val adapter = AdapterCity(list)
         view?.displayCity(adapter)
     }
+
+    fun searchCity(
+        newText: String,
+        realm: Realm,
+        cityHelper: CityHelper
+    ) {
+        val list = cityHelper.searchCityByName(realm, newText)
+        val adapter = AdapterCity(list)
+        view?.displayCity(adapter)
+    }
 }

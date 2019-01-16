@@ -1,5 +1,6 @@
 package sulistiyanto.com.rajaongkirtest.ui.province
 
+import android.util.Log
 import io.realm.Realm
 import sulistiyanto.com.rajaongkirtest.adapter.AdapterProvince
 import sulistiyanto.com.rajaongkirtest.data.RajaRepo
@@ -48,6 +49,16 @@ class ProvincePresenter @Inject constructor(private val repo: RajaRepo) : BasePr
         provinceHelper: ProvinceHelper
     ) {
         val list = provinceHelper.getProvince(realm)
+        val adapter = AdapterProvince(list)
+        view?.displayProvince(adapter)
+    }
+
+    fun searchProvince(
+        newText: String,
+        realm: Realm,
+        provinceHelper: ProvinceHelper
+    ) {
+        val list = provinceHelper.searchProvinceByName(realm, newText)
         val adapter = AdapterProvince(list)
         view?.displayProvince(adapter)
     }

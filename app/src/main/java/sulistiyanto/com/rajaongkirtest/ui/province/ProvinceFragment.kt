@@ -5,7 +5,6 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ProgressBar
@@ -67,7 +66,11 @@ class ProvinceFragment : BaseFragment(), ProvinceView {
 
             override fun onQueryTextChange(newText: String): Boolean {
                 // do something when text changes
-                Log.d("sadfds", newText)
+                if (newText == "") {
+                    presenter.checkDataProvince(realm, provinceHelper)
+                } else {
+                    presenter.searchProvince(newText, realm, provinceHelper)
+                }
                 return false
             }
         })
@@ -85,6 +88,7 @@ class ProvinceFragment : BaseFragment(), ProvinceView {
     }
 
     override fun displayProvince(adapter: AdapterProvince) {
+        progressBar?.visibility = View.GONE
         rvProvince?.adapter = adapter
     }
 }

@@ -27,7 +27,7 @@ import javax.inject.Inject
 class CityFragment : BaseFragment(), CityView {
 
     private var rvCity: RecyclerView? = null
-    private var progressBar : ProgressBar? = null
+    private var progressBar: ProgressBar? = null
     private var realm = Realm.getDefaultInstance()
 
     @Inject
@@ -67,6 +67,7 @@ class CityFragment : BaseFragment(), CityView {
     }
 
     override fun displayCity(adapter: AdapterCity) {
+        progressBar?.visibility = View.GONE
         rvCity?.adapter = adapter
     }
 
@@ -80,7 +81,11 @@ class CityFragment : BaseFragment(), CityView {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                // do something when text changes
+                if (newText == "") {
+                    presenter.checkDataCity(realm, cityHelper)
+                } else {
+                    presenter.searchCity(newText, realm, cityHelper)
+                }
                 return false
             }
         })
